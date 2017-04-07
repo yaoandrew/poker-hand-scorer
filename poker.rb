@@ -6,3 +6,7 @@ class Card
         @value = value
     
 end
+
+class Deck
+    
+end
