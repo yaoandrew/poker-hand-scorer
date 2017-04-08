@@ -1,7 +1,8 @@
 # The deck should let us remove a card. It should tell us if a card is valid.
 # After removing a card, the card should no longer be valid.
+require './card'
+
 class Deck
-  require './card'
 
 	def initialize
     @cards = []
