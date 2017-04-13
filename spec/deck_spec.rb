@@ -24,10 +24,19 @@ RSpec.describe Deck, "#valid_card?" do
 end
 
 RSpec.describe Deck, "#remove" do
-	it "should not be in the deck after being removed" do
-		deck = Deck.new
-		card = Card.new("H", 1)
-		deck.remove(card)
-		expect(deck.contains_card?(card)).to eq false
+	context "When a given card is not removed from the deck" do
+		it "should be in the deck after being removed" do
+			deck = Deck.new
+			card = Card.new("H", 1)
+			expect(deck.contains_card?(card)).to eq true
+		end
+	end
+	context "When a given card is removed from the deck" do
+		it "should not be in the deck after being removed" do
+			deck = Deck.new
+			card = Card.new("H", 1)
+			deck.remove(card)
+			expect(deck.contains_card?(card)).to eq false
+		end
 	end
 end
