@@ -21,11 +21,15 @@ class Deck
 	end
 	
 	def remove(card)
-    @cards.delete_if {|cardInDeck| cardInDeck.suit == card.suit && cardInDeck.value == card.value}
+    @cards.delete_if do |cardInDeck| 
+			cardInDeck.suit == card.suit && cardInDeck.value == card.value
+		end
 	end
 
   def contains(card)
-   @cards.any? { |cardInDeck| cardInDeck.suit == card.suit && cardInDeck.value == card.value }
+   @cards.any? do  |cardInDeck| 
+		 cardInDeck.suit == card.suit && cardInDeck.value == card.value
+		end
   end
 
 end
