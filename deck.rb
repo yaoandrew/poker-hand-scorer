@@ -16,7 +16,7 @@ class Deck
 		end 
 	end
 
-	def validate(card)
+	def valid_card?(card)
 		@suits.include?(card.suit) && @values.include?(card.value)
 	end
 	
@@ -26,7 +26,7 @@ class Deck
 		end
 	end
 
-	def contains(card)
+	def contains_card?(card)
 	 @cards.any? do  |cardInDeck| 
 		 cardInDeck.suit == card.suit && cardInDeck.value == card.value
 		end
