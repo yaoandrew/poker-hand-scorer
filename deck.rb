@@ -5,31 +5,31 @@ require './card'
 class Deck
 
 	def initialize
-    @cards = []
-    @suits = ["H" , "D", "S", "C"]
-    @values = [1,2,3]
-  
-    @suits.each do |suit| 
-      @values.each do |value|
-        @cards.push(Card.new(suit, value))
-      end
-    end 
+		@cards = []
+		@suits = ["H" , "D", "S", "C"]
+		@values = [1,2,3]
+	
+		@suits.each do |suit| 
+			@values.each do |value|
+				@cards.push(Card.new(suit, value))
+			end
+		end 
 	end
 
 	def validate(card)
-    @suits.include?(card.suit) && @values.include?(card.value)
+		@suits.include?(card.suit) && @values.include?(card.value)
 	end
 	
 	def remove(card)
-    @cards.delete_if do |cardInDeck| 
+		@cards.delete_if do |cardInDeck| 
 			cardInDeck.suit == card.suit && cardInDeck.value == card.value
 		end
 	end
 
-  def contains(card)
-   @cards.any? do  |cardInDeck| 
+	def contains(card)
+	 @cards.any? do  |cardInDeck| 
 		 cardInDeck.suit == card.suit && cardInDeck.value == card.value
 		end
-  end
+	end
 
 end
