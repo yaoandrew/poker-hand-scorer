@@ -1,6 +1,6 @@
 # The deck class is a representation of a valid deck of cards. It will validate the
 # suit and hand of each card presented and return a boolean
-require_relative 'card'
+require 'card'
 
 class Deck
   def initialize
