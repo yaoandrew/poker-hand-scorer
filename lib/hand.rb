@@ -12,14 +12,14 @@ class Hand
   end
 
   def get_high_card
-    high_rank = @cards[0].get_rank
-    high_card = nil
+    highest_rank = @cards[0].get_rank
+    highest_card = nil
     @cards.each do |card|
       current_rank = card.get_rank
-      if current_rank > high_rank then
-        high_card = card
+      if current_rank >= highest_rank then
+        highest_card = card
       end 
     end
-    return high_card
+    return highest_card
   end
 end

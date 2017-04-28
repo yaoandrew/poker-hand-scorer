@@ -58,4 +58,30 @@ RSpec.describe Hand, '#get_high_card' do
       expect(result).to eq(high_card)
     end
   end
+  context 'When the high_card is added before the low_card' do
+    it 'returns the highest card in the hand' do
+      hand = Hand.new
+      high_card = Card.new('C', 'K')
+      lower_card = Card.new('S', 'J')
+      hand.add_card(high_card)
+      hand.add_card(lower_card)
+      result = hand.get_high_card
+      expect(result).to eq(high_card)
+    end
+  end
+  context 'When multiple cards are added' do
+    it 'returns the highest card in the hand' do
+      hand = Hand.new
+      high_card = Card.new('C', 'K')
+      card1 = Card.new('S', 'J')
+      card2 = Card.new('H', 4)
+      card3 = Card.new('S', 8)
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(high_card)
+      hand.add_card(card3)
+      result = hand.get_high_card
+      expect(result).to eq(high_card)
+    end
+  end
 end
