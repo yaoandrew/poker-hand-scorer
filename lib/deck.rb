@@ -5,7 +5,7 @@ require 'card'
 class Deck
   def initialize
     @cards = []
-    @suits = ["H" , "D", "S", "C"]
+    @suits = ['H', 'D', 'S', 'C']
     @values = Array (1..13)
   end
 
