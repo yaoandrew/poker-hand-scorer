@@ -8,12 +8,11 @@ class Card
   end
 
   def get_rank
+    face_ranks = {'K' => 13, 'Q' => 12, 'J' => 11, 'A' => 14}
     case @value
     when 2..10 then @value
-    when 'K' then 13
-    when 'Q' then 12
-    when 'J' then 11
-    when 'A' then 14
+    else
+      face_ranks[@value]
     end
   end
 end
