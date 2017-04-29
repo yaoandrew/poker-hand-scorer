@@ -13,6 +13,3 @@ class Deck
     @suits.include?(card.suit) && @values.include?(card.value)
   end
 end
-
-deck = Deck.new
-puts deck.inspect
