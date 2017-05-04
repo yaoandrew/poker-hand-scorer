@@ -1,5 +1,6 @@
-# Basic class to hold card attributes and calculate ordinal rank
 require 'deck'
+
+# Basic class to hold card attributes and calculate ordinal rank
 class Card
   attr_reader :suit, :value
 
@@ -8,12 +9,11 @@ class Card
     @value = value
   end
 
-  def get_rank
-    #face_ranks = {'K' => 13, 'Q' => 12, 'J' => 11, 'A' => 14}
-    case @value
-    when 2..10 then @value
+  def rank(face_ranks)
+    if @value.is_a?(Integer)
+      @value
     else
-      Deck.FACE_RANKS[@value]
+      face_ranks[@value]
     end
   end
 end

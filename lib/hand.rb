@@ -1,5 +1,7 @@
+require 'deck'
+
 class Hand
-  def initialize 
+  def initialize
     @cards = []
   end
 
@@ -12,6 +14,6 @@ class Hand
   end
 
   def get_high_card
-    @cards.max_by { |card| card.get_rank }
+    @cards.max_by { |card| card.rank(Deck.FACE_RANKS) }
   end
 end
