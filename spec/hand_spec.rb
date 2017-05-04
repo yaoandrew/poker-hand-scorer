@@ -85,3 +85,30 @@ RSpec.describe Hand, '#get_high_card' do
     end
   end
 end
+
+RSpec.describe Hand, '#same_values' do
+  context 'When the hand contains 2 cards with the same value' do
+    it 'returns the number of cards with matching values' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', 4)
+      hand.add_card(card1)
+      hand.add_card(card2)
+      result = hand.same_values
+      expect(result).to eq 2
+    end
+  end
+  context 'When the hand contains 3 cards with the same value' do
+    it 'returns the number of cards with matching values' do
+      hand = Hand.new
+      card1 = Card.new('D', 5)
+      card2 = Card.new('H', 5)
+      card3 = Card.new('C', 5)
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      result = hand.same_values
+      expect(result).to eq 3
+    end
+  end
+end
