@@ -1,10 +1,7 @@
-# The deck class is a representation of a valid deck of cards. It will validate the
-# suit and hand of each card presented and return a boolean
-require 'card'
-
 class Deck
 
   @@FACE_RANKS = {'K' => 13, 'Q' => 12, 'J' => 11, 'A' => 14}
+  
   def initialize
     @cards = []
     @suits = %w(H D S C)
