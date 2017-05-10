@@ -36,4 +36,7 @@ class Hand
     self.value_hash.has_value?(4)
   end
 
+  def contains_full_house?
+    self.contains_pair? && self.contains_three_of_kind?
+  end
 end
