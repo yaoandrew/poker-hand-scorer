@@ -19,10 +19,10 @@ class Hand
   end
 
   def contains_pair?
-    self.value_hash.has_value?(2)
+    self.card_occurences.has_value?(2)
   end
 
-  def value_hash
+  def card_occurences
     hand = Hash.new(0)
     @cards.each { |card| hand[card.value] +=1 }
     hand
