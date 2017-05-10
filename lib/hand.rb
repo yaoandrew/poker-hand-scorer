@@ -1,6 +1,7 @@
 require 'deck'
 
 class Hand
+
   def initialize
     @cards = []
   end
@@ -18,7 +19,12 @@ class Hand
   end
 
   def contains_pair?
-    deduped_cards = @cards.uniq { |card| card.value }
-    deduped_cards.length != @cards.length
+    self.value_hash.has_value?(2)
+  end
+
+  def value_hash
+    hand = Hash.new(0)
+    @cards.each { |card| hand[card.value] +=1 }
+    hand
   end
 end
