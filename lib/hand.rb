@@ -27,4 +27,9 @@ class Hand
     @cards.each { |card| hand[card.value] +=1 }
     hand
   end
+
+  def contains_three_of_kind?
+    self.value_hash.has_value?(3)
+  end
+
 end
