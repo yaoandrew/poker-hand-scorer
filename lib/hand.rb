@@ -32,4 +32,8 @@ class Hand
     self.value_hash.has_value?(3)
   end
 
+  def contains_four_of_kind?
+    self.value_hash.has_value?(4)
+  end
+
 end
