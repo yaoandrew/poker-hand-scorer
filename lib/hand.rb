@@ -39,4 +39,8 @@ class Hand
   def contains_full_house?
     contains_pair? && contains_three_of_kind?
   end
+
+  def contains_two_pair?
+    card_occurences.select { |_k, v| v == 2}.count == 2
+  end
 end
