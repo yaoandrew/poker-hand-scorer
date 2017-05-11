@@ -111,53 +111,6 @@ RSpec.describe Hand, '#contains_pair?' do
   end
 end
 
-RSpec.describe Hand, '#value_hash' do
-  context 'When the hand contains 2 cards with the same value' do
-    it 'returns a hash with the card as the key and the frequency as 2' do
-      hand = Hand.new
-      card1 = Card.new('C', 4)
-      card2 = Card.new('H', 4)
-      hand.add_card(card1)
-      hand.add_card(card2)
-      result = hand.value_hash
-      value_hash = { 4 => 2 }
-      expect(result).to eq(value_hash)
-    end
-  end
-  context 'When the hand contains 2 pairs of cards with the same value' do
-    it 'returns a hash both pairs as the key and the frequency as 2' do
-      hand = Hand.new
-      card1 = Card.new('C', 4)
-      card2 = Card.new('H', 4)
-      card3 = Card.new('D', 2)
-      card4 = Card.new('S', 2)
-      hand.add_card(card1)
-      hand.add_card(card2)
-      hand.add_card(card3)
-      hand.add_card(card4)
-      result = hand.value_hash
-      value_hash = { 4 => 2, 2 => 2 }
-      expect(result).to eq(value_hash)
-    end
-  end
-  context 'When the hand contains 3 cards with the same value' do
-    it 'returns a hash with the card as the key and the frequency as 3' do
-      hand = Hand.new
-      card1 = Card.new('C', 4)
-      card2 = Card.new('H', 4)
-      card3 = Card.new('D', 4)
-      card4 = Card.new('S', 2)
-      hand.add_card(card1)
-      hand.add_card(card2)
-      hand.add_card(card3)
-      hand.add_card(card4)
-      result = hand.value_hash
-      value_hash = { 4 => 3, 2 => 1 }
-      expect(result).to eq(value_hash)
-    end
-  end
-end
-
 RSpec.describe Hand, '#contains_three_of_kind' do
   context 'When the hand contains 3 cards with the same value' do
     it 'returns true' do
