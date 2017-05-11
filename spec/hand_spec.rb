@@ -24,7 +24,7 @@ RSpec.describe Hand, '#contains_card?' do
   end
 end
 
-RSpec.describe Hand, '#get_high_card' do
+RSpec.describe Hand, '#high_card' do
   context 'When called with cards with numerical values' do
     it 'returns the highest card in the hand' do
       hand = Hand.new
@@ -32,7 +32,7 @@ RSpec.describe Hand, '#get_high_card' do
       high_card = Card.new('C', 10)
       hand.add_card(lower_card)
       hand.add_card(high_card)
-      result = hand.get_high_card
+      result = hand.high_card
       expect(result).to eq(high_card)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe Hand, '#get_high_card' do
       high_card = Card.new('C', 'K')
       hand.add_card(lower_card)
       hand.add_card(high_card)
-      result = hand.get_high_card
+      result = hand.high_card
       expect(result).to eq(high_card)
     end
   end
@@ -54,7 +54,7 @@ RSpec.describe Hand, '#get_high_card' do
       high_card = Card.new('C', 'K')
       hand.add_card(lower_card)
       hand.add_card(high_card)
-      result = hand.get_high_card
+      result = hand.high_card
       expect(result).to eq(high_card)
     end
   end
@@ -65,7 +65,7 @@ RSpec.describe Hand, '#get_high_card' do
       lower_card = Card.new('S', 'J')
       hand.add_card(high_card)
       hand.add_card(lower_card)
-      result = hand.get_high_card
+      result = hand.high_card
       expect(result).to eq(high_card)
     end
   end
@@ -80,8 +80,33 @@ RSpec.describe Hand, '#get_high_card' do
       hand.add_card(card2)
       hand.add_card(high_card)
       hand.add_card(card3)
-      result = hand.get_high_card
+      result = hand.high_card
       expect(result).to eq(high_card)
+    end
+  end
+end
+
+RSpec.describe Hand, '#contains_pair?' do
+  context 'When the hand contains 2 cards with the same value' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', 4)
+      hand.add_card(card1)
+      hand.add_card(card2)
+      result = hand.contains_pair?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain 2 cards with the same value' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('D', 6)
+      card2 = Card.new('H', 4)
+      hand.add_card(card1)
+      hand.add_card(card2)
+      result = hand.contains_pair?
+      expect(result).to be false
     end
   end
 end

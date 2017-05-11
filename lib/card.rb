@@ -1,6 +1,3 @@
-require 'deck'
-
-# Basic class to hold card attributes and calculate ordinal rank
 class Card
   attr_reader :suit, :value
 
