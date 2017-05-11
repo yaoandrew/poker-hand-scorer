@@ -53,4 +53,13 @@ class Hand
   def contains_flush?
     suit_occurences.value?(5)
   end
+
+  def royal_sum
+    @cards.collect{ |card| card.rank(Deck.FACE_RANKS)}
+      .inject{|sum, card| sum + card}
+  end
+
+  def contains_royal_flush?
+    royal_sum == 60 && contains_flush?
+  end
 end

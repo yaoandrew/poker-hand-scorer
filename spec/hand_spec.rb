@@ -287,3 +287,40 @@ RSpec.describe Hand, '#contains_flush' do
     end
   end
 end
+
+RSpec.describe Hand, '#contains_royal_flush' do
+  context 'When the hand contains a royal flush' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('D', 10)
+      card2 = Card.new('D', "Q")
+      card3 = Card.new('D', "A")
+      card4 = Card.new('D', "K")
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_royal_flush?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain a royal flush' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('H', 4)
+      card2 = Card.new('C', 3)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('S', "K")
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_royal_flush?
+      expect(result).to be false
+    end
+  end
+end
