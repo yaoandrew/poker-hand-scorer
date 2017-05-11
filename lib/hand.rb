@@ -24,7 +24,7 @@ class Hand
 
   def card_occurences
     hand = Hash.new(0)
-    @cards.each { |card| hand[card.value] +=1 }
+    @cards.each { |card| hand[card.value] += 1 }
     hand
   end
 
@@ -42,5 +42,15 @@ class Hand
 
   def contains_two_pair?
     card_occurences.select { |_k, v| v == 2}.count == 2
+  end
+
+  def suit_occurences
+    hand = Hash.new(0)
+    @cards.each { |card| hand[card.suit] += 1 }
+    hand
+  end
+
+  def contains_flush?
+    suit_occurences.value?(5)
   end
 end
