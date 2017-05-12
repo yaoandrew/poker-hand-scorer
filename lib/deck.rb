@@ -1,7 +1,7 @@
 class Deck
 
   @@FACE_RANKS = {'K' => 13, 'Q' => 12, 'J' => 11, 'A' => 14}
-  
+
   def initialize
     @cards = []
     @suits = %w(H D S C)

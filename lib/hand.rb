@@ -19,12 +19,24 @@ class Hand
   end
 
   def contains_pair?
-    self.card_occurences.has_value?(2)
+    card_occurences.has_value?(2)
   end
 
   def card_occurences
     hand = Hash.new(0)
     @cards.each { |card| hand[card.value] +=1 }
     hand
+  end
+
+  def contains_three_of_kind?
+    card_occurences.value?(3)
+  end
+
+  def contains_four_of_kind?
+    card_occurences.value?(4)
+  end
+
+  def contains_full_house?
+    contains_pair? && contains_three_of_kind?
   end
 end

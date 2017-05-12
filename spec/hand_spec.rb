@@ -110,3 +110,106 @@ RSpec.describe Hand, '#contains_pair?' do
     end
   end
 end
+
+RSpec.describe Hand, '#contains_three_of_kind' do
+  context 'When the hand contains 3 cards with the same value' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', 4)
+      card3 = Card.new('D', 4)
+      card4 = Card.new('D', "K")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      result = hand.contains_three_of_kind?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain 3 cards with the same value' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', "Q")
+      card3 = Card.new('D', 4)
+      card4 = Card.new('D', "K")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      result = hand.contains_three_of_kind?
+      expect(result).to be false
+    end
+  end
+end
+
+RSpec.describe Hand, '#contains_four_of_kind' do
+  context 'When the hand contains 4 cards with the same value' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('C', "J")
+      card2 = Card.new('H', "J")
+      card3 = Card.new('D', "J")
+      card4 = Card.new('S', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      result = hand.contains_four_of_kind?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain 4 cards with the same value' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', "Q")
+      card3 = Card.new('D', 4)
+      card4 = Card.new('D', "Q")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      result = hand.contains_four_of_kind?
+      expect(result).to be false
+    end
+  end
+end
+
+RSpec.describe Hand, '#contains_full_house' do
+  context 'When the hand contains a full house' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', 4)
+      card3 = Card.new('D', 4)
+      card4 = Card.new('D', "K")
+      card5 = Card.new('S', "K")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_full_house?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain a full house' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', "Q")
+      card3 = Card.new('D', 4)
+      card4 = Card.new('D', "K")
+      card5 = Card.new('S', "K")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_full_house?
+      expect(result).to be false
+    end
+  end
+end
