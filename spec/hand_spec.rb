@@ -395,3 +395,40 @@ RSpec.describe Hand, '#contains_straight' do
     end
   end
 end
+
+RSpec.describe Hand, '#contains_straight_flush' do
+  context 'When the hand contains a straight flush' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('S', 10)
+      card2 = Card.new('S', 9)
+      card3 = Card.new('S', 8)
+      card4 = Card.new('S', 7)
+      card5 = Card.new('S', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight_flush?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain a straight flush' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('H', 4)
+      card2 = Card.new('C', 3)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('S', "K")
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight_flush?
+      expect(result).to be false
+    end
+  end
+end

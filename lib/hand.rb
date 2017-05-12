@@ -74,4 +74,8 @@ class Hand
   def contains_straight?
     low_card.value == 2 && rank_difference == 12 || rank_difference == 4
   end
+
+  def contains_straight_flush?
+    contains_straight? && contains_flush?
+  end
 end
