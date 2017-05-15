@@ -250,3 +250,40 @@ RSpec.describe Hand, '#contains_two_pair' do
     end
   end
 end
+
+RSpec.describe Hand, '#contains_flush' do
+  context 'When the hand contains a flush' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('D', 4)
+      card2 = Card.new('D', 3)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('D', "K")
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_flush?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain a flush' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('H', 4)
+      card2 = Card.new('C', 3)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('S', "K")
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_flush?
+      expect(result).to be false
+    end
+  end
+end
