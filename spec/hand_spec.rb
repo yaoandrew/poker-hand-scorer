@@ -324,3 +324,74 @@ RSpec.describe Hand, '#contains_royal_flush' do
     end
   end
 end
+
+RSpec.describe Hand, '#contains_straight' do
+  context 'When the hand contains a straight' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('S', 10)
+      card2 = Card.new('C', 9)
+      card3 = Card.new('H', 8)
+      card4 = Card.new('D', 7)
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain a straight' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('H', 4)
+      card2 = Card.new('C', 3)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('S', "K")
+      card5 = Card.new('D', "J")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight?
+      expect(result).to be false
+    end
+  end
+  context 'When the hand contains a straight with ace high' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('S', 10)
+      card2 = Card.new('C', "J")
+      card3 = Card.new('H', "Q")
+      card4 = Card.new('D', "K")
+      card5 = Card.new('D', "A")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand contains a straight with ace low' do
+    it 'returns true' do
+      hand = Hand.new
+      card1 = Card.new('S', 5)
+      card2 = Card.new('C', 4)
+      card3 = Card.new('H', 3)
+      card4 = Card.new('D', 2)
+      card5 = Card.new('D', "A")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight?
+      expect(result).to be true
+    end
+  end
+end
