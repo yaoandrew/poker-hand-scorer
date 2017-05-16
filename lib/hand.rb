@@ -39,12 +39,7 @@ class Hand
   end
 
   def contains_straight?
-    #low_card.value == 2 && rank_difference == 12 || rank_difference == 4
-    #consecutive_range.compare(@cards.map { |card| card.rank(Deck.FACE_RANKS) })
-    if ace_low_straight?
-      return true
-    end
-    royal_sum == consecutive_sum
+    card_sum == consecutive_sum || card_sum == 28 && all_unique?
   end
 
   def contains_flush?
@@ -52,7 +47,7 @@ class Hand
   end
 
   def contains_royal_flush?
-    royal_sum == 60 && contains_flush?
+    card_sum == 60 && contains_flush?
   end
 
   def low_card
@@ -80,13 +75,12 @@ class Hand
     hand
   end
 
-  def royal_sum
+  def card_sum
     @cards.collect { |card| card.rank(Deck.FACE_RANKS)}
           .inject { |sum, card| sum + card}
   end
-
-  def ace_low_straight?
-    puts royal_sum
-    royal_sum == 28 && low_card.value == 2
+  
+  def all_unique?
+    card_occurences.count { |k,v| v == 1} == 5
   end
 end
