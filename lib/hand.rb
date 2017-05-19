@@ -15,7 +15,7 @@ class Hand
   end
 
   def high_card
-    @cards.max_by { |card| card.rank(Deck.FACE_RANKS) }
+    @cards.max_by { |card| card.rank(Deck.values) }
   end
 
   def contains_pair?
@@ -49,21 +49,21 @@ class Hand
   def contains_straight_flush?
     contains_straight? && contains_flush?
   end
-  
+
   def contains_royal_flush?
     card_sum == 60 && contains_flush?
   end
 
   def low_card
-    @cards.min_by { |card| card.rank(Deck.FACE_RANKS) }
+    @cards.min_by { |card| card.rank(Deck.values) }
   end
 
   def rank_difference
-    high_card.rank(Deck.FACE_RANKS) - low_card.rank(Deck.FACE_RANKS)
+    high_card.rank(Deck.values) - low_card.rank(Deck.values)
   end
 
   def consecutive_sum
-    card_range = low_card.rank(Deck.FACE_RANKS)..high_card.rank(Deck.FACE_RANKS)
+    card_range = low_card.rank(Deck.values)..high_card.rank(Deck.values)
     card_range.reduce(:+)
   end
 
@@ -80,7 +80,7 @@ class Hand
   end
 
   def card_sum
-    @cards.collect { |card| card.rank(Deck.FACE_RANKS)}
+    @cards.collect { |card| card.rank(Deck.values)}
           .inject { |sum, card| sum + card}
   end
   
