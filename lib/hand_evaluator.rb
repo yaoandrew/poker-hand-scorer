@@ -1,19 +1,25 @@
 class HandEvaluator
+  def initialize(ranker)
+    @hand_ranker = ranker
+  end
+
   def best_hand(hand)
-    if hand.contains_royal_flush?
-      hand.HAND_TYPE[:RF]
-    elsif hand.contains_straight_flush?
-      hand.HAND_TYPE[:SF]
-    elsif hand.contains_four_of_kind?
-      hand.HAND_TYPE[:FK]
-    elsif hand.contains_full_house?
-      hand.HAND_TYPE[:FH]
-    elsif hand.contains_flush?
-      hand.HAND_TYPE[:FL]
-    elsif hand.contains_straight?
-      hand.HAND_TYPE[:ST]
-    elsif hand.contains_three_of_kind?
-      hand.HAND_TYPE[:TK]
+    if @hand_ranker.contains_royal_flush?
+      hand.HAND_TYPES[:RF]
+    elsif @hand_ranker.contains_straight_flush?
+      hand.HAND_TYPES[:SF]
+    elsif @hand_ranker.contains_four_of_kind?
+      hand.HAND_TYPES[:FK]
+    elsif @hand_ranker.contains_full_house?
+      hand.HAND_TYPES[:FH]
+    elsif @hand_ranker.contains_flush?
+      hand.HAND_TYPES[:FL]
+    elsif @hand_ranker.contains_straight?
+      hand.HAND_TYPES[:ST]
+    elsif @hand_ranker.contains_three_of_kind?
+      hand.HAND_TYPES[:TK]
+    else 
+      hand.HAND_TYPES[:HC]
     end
   end
 end
