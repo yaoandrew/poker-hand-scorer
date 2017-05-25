@@ -20,15 +20,15 @@ class HandRanker
   end
 
   def contains_two_pair?
-    card_occurences.select { |_k, v| v == 2 }.count == 2
+    @hand.card_occurences.select { |_k, v| v == 2 }.count == 2
   end
 
   def contains_straight?
-    card_sum == consecutive_sum || card_sum == 28 && all_unique?
+    @hand.card_sum == consecutive_sum || card_sum == 28 && all_unique?
   end
 
   def contains_flush?
-    suit_occurences.value?(5)
+    @hand.suit_occurences.value?(5)
   end
 
   def contains_straight_flush?

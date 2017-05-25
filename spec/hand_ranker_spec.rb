@@ -137,3 +137,42 @@ RSpec.describe HandRanker, '#contains_full_house' do
     end
   end
 end
+
+RSpec.describe HandRanker, '#contains_two_pair' do
+  context 'When the hand contains two pairs of matching cards' do
+    it 'returns true' do
+      hand = Hand.new
+      hand_ranker = HandRanker.new(hand)
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', 4)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('D', "K")
+      card5 = Card.new('S', "K")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand_ranker.contains_two_pair?
+      expect(result).to be true
+    end
+  end
+  context 'When the hand does not contain two pairs of matching cards' do
+    it 'returns false' do
+      hand = Hand.new
+      hand_ranker = HandRanker.new(hand)
+      card1 = Card.new('C', 4)
+      card2 = Card.new('H', 4)
+      card3 = Card.new('D', 7)
+      card4 = Card.new('D', 3)
+      card5 = Card.new('S', "K")
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand_ranker.contains_two_pair?
+      expect(result).to be false
+    end
+  end
+end
