@@ -1,9 +1,23 @@
 require 'deck'
 
 class Hand
+  @@HAND_TYPES = { RF: 'Royal Flush',
+                   SF: 'Straight Flush',
+                   FK: 'Four of a Kind',
+                   FH: 'Full House',
+                   FL: 'Flush',
+                   ST: 'Straight',
+                   TK: 'Three of a Kind',
+                   TP: 'Two Pair',
+                   PR: 'Pair',
+                   HC: 'High Card' }
 
   def initialize
     @cards = []
+  end
+
+  def HAND_TYPES
+    @@HAND_TYPES
   end
 
   def add_card(card)
@@ -15,51 +29,19 @@ class Hand
   end
 
   def high_card
-    @cards.max_by { |card| card.rank(Deck.FACE_RANKS) }
-  end
-
-  def contains_pair?
-    card_occurences.value?(2)
-  end
-
-  def contains_three_of_kind?
-    card_occurences.value?(3)
-  end
-
-  def contains_four_of_kind?
-    card_occurences.value?(4)
-  end
-
-  def contains_full_house?
-    contains_pair? && contains_three_of_kind?
-  end
-
-  def contains_two_pair?
-    card_occurences.select { |_k, v| v == 2}.count == 2
-  end
-
-  def contains_straight?
-    card_sum == consecutive_sum || card_sum == 28 && all_unique?
-  end
-
-  def contains_flush?
-    suit_occurences.value?(5)
-  end
-
-  def contains_royal_flush?
-    card_sum == 60 && contains_flush?
+    @cards.max_by { |card| card.rank(Deck.values) }
   end
 
   def low_card
-    @cards.min_by { |card| card.rank(Deck.FACE_RANKS) }
+    @cards.min_by { |card| card.rank(Deck.values) }
   end
 
   def rank_difference
-    high_card.rank(Deck.FACE_RANKS) - low_card.rank(Deck.FACE_RANKS)
+    high_card.rank(Deck.values) - low_card.rank(Deck.values)
   end
 
   def consecutive_sum
-    card_range = low_card.rank(Deck.FACE_RANKS)..high_card.rank(Deck.FACE_RANKS)
+    card_range = low_card.rank(Deck.values)..high_card.rank(Deck.values)
     card_range.reduce(:+)
   end
 
@@ -76,11 +58,23 @@ class Hand
   end
 
   def card_sum
-    @cards.collect { |card| card.rank(Deck.FACE_RANKS)}
+    @cards.collect { |card| card.rank(Deck.values)}
           .inject { |sum, card| sum + card}
   end
-  
+
   def all_unique?
-    card_occurences.count { |k,v| v == 1} == 5
+    card_occurences.count { |_k, v| v == 1 } == 5
+  end
+
+  def royal_flush_sum
+    royal_flush_card_values = [10, 'J', 'Q', 'K', 'A']
+    royal_flush_card_values.collect { |card_value| Deck.values.find_index card_value}
+                           .inject { |sum, card_value| sum + card_value }
+  end
+
+  def ace_low_straight_sum
+    ace_low_values = ['A', 2, 3, 4, 5]
+    ace_low_values.collect { |card_value| Deck.values.find_index card_value}
+                  .inject { |sum, card_value| sum + card_value }
   end
 end

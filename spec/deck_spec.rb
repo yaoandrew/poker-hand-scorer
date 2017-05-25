@@ -18,4 +18,10 @@ RSpec.describe Deck, '#valid_card?' do
       expect(result).to eq false
     end
   end
+  context 'When the deck is asked' do
+    it 'returns its values array' do
+      result = Deck.values
+      expect(result).to eq [0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
+    end
+  end
 end
