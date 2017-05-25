@@ -1,24 +1,23 @@
 require 'deck'
 
 class Hand
-
-  @@HAND_TYPE = { RF: 'Royal Flush',
-                  SF: 'Straight Flush',
-                  FK: 'Four of a Kind',
-                  FH: 'Full House',
-                  FL: 'Flush',
-                  ST: 'Straight',
-                  TK: 'Three of a Kind',
-                  TP: 'Two Pair',
-                  PR: 'Pair',
-                  HC: 'High Card' }
+  @@HAND_TYPES = { RF: 'Royal Flush',
+                   SF: 'Straight Flush',
+                   FK: 'Four of a Kind',
+                   FH: 'Full House',
+                   FL: 'Flush',
+                   ST: 'Straight',
+                   TK: 'Three of a Kind',
+                   TP: 'Two Pair',
+                   PR: 'Pair',
+                   HC: 'High Card' }
 
   def initialize
     @cards = []
   end
 
-  def HAND_TYPE
-    @@HAND_TYPE
+  def HAND_TYPES
+    @@HAND_TYPES
   end
 
   def add_card(card)
@@ -62,8 +61,8 @@ class Hand
     @cards.collect { |card| card.rank(Deck.values)}
           .inject { |sum, card| sum + card}
   end
-  
+
   def all_unique?
-    card_occurences.count { |k,v| v == 1} == 5
+    card_occurences.count { |_k, v| v == 1 } == 5
   end
 end

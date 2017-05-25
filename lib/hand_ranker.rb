@@ -1,17 +1,18 @@
-require 'hand'
-
 class HandRanker
+  def initialize(hand)
+    @hand = hand
+  end
 
   def contains_pair?
-    card_occurences.value?(2)
+    @hand.card_occurences.value?(2)
   end
 
   def contains_three_of_kind?
-    card_occurences.value?(3)
+    @hand.card_occurences.value?(3)
   end
 
   def contains_four_of_kind?
-    card_occurences.value?(4)
+    @hand.card_occurences.value?(4)
   end
 
   def contains_full_house?
@@ -19,7 +20,7 @@ class HandRanker
   end
 
   def contains_two_pair?
-    card_occurences.select { |_k, v| v == 2}.count == 2
+    card_occurences.select { |_k, v| v == 2 }.count == 2
   end
 
   def contains_straight?
