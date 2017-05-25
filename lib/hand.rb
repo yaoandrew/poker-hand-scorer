@@ -65,4 +65,12 @@ class Hand
   def all_unique?
     card_occurences.count { |_k, v| v == 1 } == 5
   end
+
+  def royal_flush_sum
+    60
+  end
+
+  def ace_low_straight_sum
+    28
+  end
 end

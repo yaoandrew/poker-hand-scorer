@@ -24,7 +24,8 @@ class HandRanker
   end
 
   def contains_straight?
-    @hand.card_sum == consecutive_sum || card_sum == 28 && all_unique?
+    @hand.card_sum == @hand.consecutive_sum ||
+      @hand.card_sum == @hand.ace_low_straight_sum && @hand.all_unique?
   end
 
   def contains_flush?
@@ -36,6 +37,6 @@ class HandRanker
   end
 
   def contains_royal_flush?
-    card_sum == 60 && contains_flush?
+    @hand.card_sum == @hand.royal_flush_sum && contains_flush?
   end
 end
