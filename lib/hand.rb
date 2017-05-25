@@ -67,10 +67,14 @@ class Hand
   end
 
   def royal_flush_sum
-    60
+    royal_flush_card_values = [10, 'J', 'Q', 'K', 'A']
+    royal_flush_card_values.collect { |card_value| Deck.values.find_index card_value}
+                           .inject { |sum, card_value| sum + card_value }
   end
 
   def ace_low_straight_sum
-    28
+    ace_low_values = ['A', 2, 3, 4, 5]
+    ace_low_values.collect { |card_value| Deck.values.find_index card_value}
+                           .inject { |sum, card_value| sum + card_value }
   end
 end
