@@ -75,6 +75,6 @@ class Hand
   def ace_low_straight_sum
     ace_low_values = ['A', 2, 3, 4, 5]
     ace_low_values.collect { |card_value| Deck.values.find_index card_value}
-                           .inject { |sum, card_value| sum + card_value }
+                  .inject { |sum, card_value| sum + card_value }
   end
 end
