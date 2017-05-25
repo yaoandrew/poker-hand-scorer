@@ -394,4 +394,21 @@ RSpec.describe Hand, '#contains_straight' do
       expect(result).to be true
     end
   end
+  context 'When the hi/low difference is 4 and the hand is not a straight' do
+    it 'returns false' do
+      hand = Hand.new
+      card1 = Card.new('S', 7)
+      card2 = Card.new('C', 7)
+      card3 = Card.new('H', 7)
+      card4 = Card.new('D', 8)
+      card5 = Card.new('D', 'J')
+      hand.add_card(card1)
+      hand.add_card(card2)
+      hand.add_card(card3)
+      hand.add_card(card4)
+      hand.add_card(card5)
+      result = hand.contains_straight?
+      expect(result).to be false
+    end
+  end
 end
