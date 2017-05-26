@@ -1,4 +1,4 @@
-require 'deck'
+require_relative 'deck'
 
 class Hand
   @@HAND_TYPES = { RF: 'Royal Flush',
