@@ -59,18 +59,17 @@ class Hand
   end
 
   def all_unique?
-    card_occurences.count { |_k, v| v == 1 } == 5
+    card_occurences.count { |_k, v| v == 1 } == @cards.length
   end
 
   def royal_flush_sum
-    royal_flush_card_values = [10, 'J', 'Q', 'K', 'A']
-    royal_flush_card_values.collect { |card_value| Deck::VALUES.find_index card_value}
+    Deck::ROYALS.collect { |card_value| Deck::VALUES.find_index card_value}
                            .inject { |sum, card_value| sum + card_value }
   end
 
   def ace_low_straight_sum
-    ace_low_values = ['A', 2, 3, 4, 5]
-    ace_low_values.collect { |card_value| Deck::VALUES.find_index card_value}
+    #slice VALUES to get ace low 
+    Deck::ACE_LOW_STRAIGHT.collect { |card_value| Deck::VALUES.find_index card_value}
                   .inject { |sum, card_value| sum + card_value }
   end
 end
