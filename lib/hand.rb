@@ -66,8 +66,8 @@ class Hand
   end
 
   def ace_low_straight_sum
-    #slice VALUES to get ace low 
-    Deck::ACE_LOW_STRAIGHT.collect { |card_value| Deck::VALUES.find_index card_value}
+    ['A'].concat(Deck::VALUES.slice(2..5))
+                  .collect { |card_value| Deck::VALUES.find_index card_value}
                   .inject { |sum, card_value| sum + card_value }
   end
 end
