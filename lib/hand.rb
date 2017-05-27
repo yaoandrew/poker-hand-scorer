@@ -1,5 +1,3 @@
-require 'deck'
-
 class Hand
   HAND_TYPES = { RF: 'Royal Flush',
                  SF: 'Straight Flush',
