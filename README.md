@@ -9,4 +9,4 @@ or King of Hearts respectively.
 
 This project uses RSpec (3.5.4) for unit testing and was built with Ruby (2.4.0)
 
-Start the game by running  `ruby lib/start_hand_scorer.rb`
+Start the game by running  `./start_hand_scorer.rb`
