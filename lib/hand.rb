@@ -1,3 +1,5 @@
+require_relative 'deck'
+
 class Hand
   HAND_TYPES = { RF: 'Royal Flush',
                  SF: 'Straight Flush',
@@ -18,8 +20,12 @@ class Hand
     @cards.push(card)
   end
 
-  def contains_card?(card)
-    @cards.include?(card)
+  def length
+    @cards.length
+  end
+
+  def contains_card?(testcard)
+    @cards.any? { |card| card.value == testcard.value && card.suit == testcard.suit }
   end
 
   def high_card

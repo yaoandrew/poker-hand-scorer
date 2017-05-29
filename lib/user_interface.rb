@@ -1,17 +1,17 @@
 class UserInterface
   def prompt_user_for_card
-    puts 'Please enter a valid card (Ex. 2H is the Two of Hearts):'
+    print 'Please enter a valid card (Ex. 2H is the Two of Hearts):'
   end
 
   def card_exists
-    puts 'This card already exists in the hand'
+    puts 'ERROR:  This card already exists in the hand'
   end
 
   def invalid_card
-    puts 'This is not a valid card'
+    puts 'ERROR:  This is not a valid card'
   end
 
   def hand_results
-    puts 'Congrats, you have a...'
+    print 'Congrats, you have a... '
   end
 end

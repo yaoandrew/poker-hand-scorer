@@ -4,49 +4,34 @@ require_relative 'user_interface'
 require_relative 'deck'
 require_relative 'card'
 require_relative 'hand'
+require_relative 'hand_evaluator'
+require_relative 'hand_ranker'
+require_relative 'card_creator'
 
-
-# deck.valid_card?
-# hand.contains_card?
-# hand.add_card
-
-class CardCreator
-  require_relative 'card'
-  require_relative 'deck'
-  attr_accessor :suit, :value
-
-  def initialize(input_string)
-    @suit = input_string[1]
-    @value = input_string[0]
-
-    if @value.to_i.between?(2, 10)
-      @value = input_string[0].to_i
-    end
-  end
-
-  def create_card
-    Card.new(@suit, @value)
-  end
-end
-
-class HandCreator
-  require_relative 'hand'
-  hand = Hand.new
-  hand
-end
 
 ui = UserInterface.new
-ui.prompt_user_for_card
-input_string = gets.chomp
-creator = CardCreator.new(input_string)
-card = creator.create_card
-
 deck = Deck.new
 hand = Hand.new
 
-p deck.valid_card?(card)
+while hand.length < 5
+  ui.prompt_user_for_card
+  input_string = gets.chomp
+  creator = CardCreator.new(input_string)
+  card = creator.create_card
 
-hand.add_card(card)
+  if deck.valid_card?(card)
+    if !hand.contains_card?(card)
+      hand.add_card(card)
+    else
+      ui.card_exists
+    end
+  else
+    ui.invalid_card
+  end
+end
 
-p hand.inspect
-p card.suit
+hand_ranker = HandRanker.new (hand)
+hand_evaluator = HandEvaluator.new(hand_ranker)
+
+ui.hand_results
+puts hand_evaluator.best_hand(hand)
