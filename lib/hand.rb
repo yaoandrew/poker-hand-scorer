@@ -45,13 +45,13 @@ class Hand
     card_range.reduce(:+)
   end
 
-  def card_occurences
+  def card_occurrences
     hand = Hash.new(0)
     @cards.each { |card| hand[card.value] += 1 }
     hand
   end
 
-  def suit_occurences
+  def suit_occurrences
     hand = Hash.new(0)
     @cards.each { |card| hand[card.suit] += 1 }
     hand
@@ -63,7 +63,7 @@ class Hand
   end
 
   def all_unique?
-    card_occurences.count { |_k, v| v == 1 } == @cards.length
+    card_occurrences.count { |_k, v| v == 1 } == @cards.length
   end
 
   def royal_flush_sum
