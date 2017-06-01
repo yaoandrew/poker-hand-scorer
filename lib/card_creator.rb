@@ -1,6 +1,5 @@
 class CardCreator
   require_relative 'card'
-  require_relative 'deck'
   attr_accessor :suit, :value
 
   def initialize(input_string)
