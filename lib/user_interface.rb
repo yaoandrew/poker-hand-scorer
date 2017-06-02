@@ -11,7 +11,7 @@ class UserInterface
     puts 'ERROR:  This is not a valid card'
   end
 
-  def hand_results
-    print 'Congrats, you have a... '
+  def hand_results(result)
+    puts "Congrats, you have a... #{result}"
   end
 end
