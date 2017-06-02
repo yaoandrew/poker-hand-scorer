@@ -1,6 +1,12 @@
 class UserInterface
+  attr_reader :input
+
   def prompt_user_for_card
     print 'Please enter a valid card (Ex. 2H is the Two of Hearts):'
+  end
+
+  def get_input
+    @input = gets.chomp
   end
 
   def card_exists

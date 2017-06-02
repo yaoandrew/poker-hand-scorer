@@ -15,8 +15,8 @@ hand = Hand.new
 
 while hand.length < 5
   ui.prompt_user_for_card
-  input_string = gets.chomp
-  creator = CardCreator.new(input_string)
+  ui.get_input
+  creator = CardCreator.new(ui.input)
   card = creator.create_card
 
   if deck.valid_card?(card)
