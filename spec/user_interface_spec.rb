@@ -7,3 +7,12 @@ RSpec.describe UserInterface, '#prompt_user_for_card' do
     expect{ui.prompt_user_for_card}.to output(prompt).to_stdout
   end
 end
+
+RSpec.describe UserInterface, '#hand_results' do
+  it 'takes a result and displays it' do
+    ui = UserInterface.new
+    hand_rank = 'Royal Flush'
+    result = "Congrats, you have a... Royal Flush\n"
+    expect{ui.hand_results(hand_rank)}.to output(result).to_stdout
+  end
+end

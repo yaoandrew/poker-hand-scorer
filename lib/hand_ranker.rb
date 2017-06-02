@@ -4,15 +4,15 @@ class HandRanker
   end
 
   def contains_pair?
-    @hand.card_occurrences.value?(2)
+    @hand.card_occurrences("value").value?(2)
   end
 
   def contains_three_of_kind?
-    @hand.card_occurrences.value?(3)
+    @hand.card_occurrences("value").value?(3)
   end
 
   def contains_four_of_kind?
-    @hand.card_occurrences.value?(4)
+    @hand.card_occurrences("value").value?(4)
   end
 
   def contains_full_house?
@@ -20,7 +20,7 @@ class HandRanker
   end
 
   def contains_two_pair?
-    @hand.card_occurrences.select { |_k, v| v == 2 }.count == 2
+    @hand.card_occurrences("value").select { |_k, v| v == 2 }.count == 2
   end
 
   def contains_straight?
@@ -29,7 +29,7 @@ class HandRanker
   end
 
   def contains_flush?
-    @hand.suit_occurrences.value?(5)
+    @hand.card_occurrences("suit").value?(5)
   end
 
   def contains_straight_flush?
