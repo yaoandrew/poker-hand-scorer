@@ -6,11 +6,7 @@ class Card
     @value = value
   end
 
-  def rank(face_ranks)
-    if @value.is_a?(Integer)
-      @value
-    else
-      face_ranks[@value]
-    end
+  def rank(deck_values)
+    deck_values.find_index(@value)
   end
 end

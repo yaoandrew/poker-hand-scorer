@@ -1,6 +1,14 @@
-require 'deck'
-
 class Hand
+  HAND_TYPES = { RF: 'Royal Flush',
+                 SF: 'Straight Flush',
+                 FK: 'Four of a Kind',
+                 FH: 'Full House',
+                 FL: 'Flush',
+                 ST: 'Straight',
+                 TK: 'Three of a Kind',
+                 TP: 'Two Pair',
+                 PR: 'Pair',
+                 HC: 'High Card' }
 
   def initialize
     @cards = []
@@ -10,77 +18,61 @@ class Hand
     @cards.push(card)
   end
 
+  def length
+    @cards.length
+  end
+
   def contains_card?(card)
-    @cards.include?(card)
+    @cards.any? do |card_in_hand| 
+      card_in_hand.value == card.value && card_in_hand.suit == card.suit
+    end
   end
 
   def high_card
-    @cards.max_by { |card| card.rank(Deck.FACE_RANKS) }
-  end
-
-  def contains_pair?
-    card_occurences.value?(2)
-  end
-
-  def contains_three_of_kind?
-    card_occurences.value?(3)
-  end
-
-  def contains_four_of_kind?
-    card_occurences.value?(4)
-  end
-
-  def contains_full_house?
-    contains_pair? && contains_three_of_kind?
-  end
-
-  def contains_two_pair?
-    card_occurences.select { |_k, v| v == 2}.count == 2
-  end
-
-  def contains_straight?
-    card_sum == consecutive_sum || card_sum == 28 && all_unique?
-  end
-
-  def contains_flush?
-    suit_occurences.value?(5)
-  end
-
-  def contains_royal_flush?
-    card_sum == 60 && contains_flush?
+    @cards.max_by { |card| card.rank(Deck::VALUES) }
   end
 
   def low_card
-    @cards.min_by { |card| card.rank(Deck.FACE_RANKS) }
+    @cards.min_by { |card| card.rank(Deck::VALUES) }
   end
 
   def rank_difference
-    high_card.rank(Deck.FACE_RANKS) - low_card.rank(Deck.FACE_RANKS)
+    high_card.rank(Deck::VALUES) - low_card.rank(Deck::VALUES)
   end
 
   def consecutive_sum
-    card_range = low_card.rank(Deck.FACE_RANKS)..high_card.rank(Deck.FACE_RANKS)
+    card_range = low_card.rank(Deck::VALUES)..high_card.rank(Deck::VALUES)
     card_range.reduce(:+)
   end
 
-  def card_occurences
+  def card_occurrences(type)
     hand = Hash.new(0)
-    @cards.each { |card| hand[card.value] += 1 }
-    hand
-  end
 
-  def suit_occurences
-    hand = Hash.new(0)
-    @cards.each { |card| hand[card.suit] += 1 }
+    if type =~ /value/
+      @cards.each { |card| hand[card.value] += 1 }
+    else
+      @cards.each { |card| hand[card.suit] += 1 }
+    end
     hand
   end
 
   def card_sum
-    @cards.collect { |card| card.rank(Deck.FACE_RANKS)}
+    @cards.collect { |card| card.rank(Deck::VALUES)}
           .inject { |sum, card| sum + card}
   end
-  
+
   def all_unique?
-    card_occurences.count { |k,v| v == 1} == 5
+    card_occurrences("value").count { |_k, v| v == 1 } == @cards.length
+  end
+
+  def royal_flush_sum
+    Deck::ROYALS.collect { |card_value| Deck::VALUES.find_index card_value}
+                           .inject { |sum, card_value| sum + card_value }
+  end
+
+  def ace_low_straight_sum
+    ['A'].concat(Deck::VALUES.slice(2..5))
+                  .collect { |card_value| Deck::VALUES.find_index card_value}
+                  .inject { |sum, card_value| sum + card_value }
   end
 end
