@@ -11,8 +11,9 @@ end
 RSpec.describe UserInterface, '#hand_results' do
   it 'takes a result and displays it' do
     ui = UserInterface.new
+    hand = Hand.new
     hand_rank = 'Royal Flush'
     result = "Congrats, you have a... Royal Flush\n"
-    expect{ui.hand_results(hand_rank)}.to output(result).to_stdout
+    expect{ui.hand_results(hand_rank, hand)}.to output(result).to_stdout
   end
 end

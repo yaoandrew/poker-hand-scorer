@@ -32,4 +32,4 @@ end
 
 hand_ranker = HandRanker.new (hand)
 hand_evaluator = HandEvaluator.new(hand_ranker)
-ui.hand_results(hand_evaluator.best_hand(hand))
+ui.hand_results(hand_evaluator.best_hand(hand), hand)
