@@ -32,6 +32,10 @@ class Hand
     @cards.max_by { |card| card.rank(Deck::VALUES) }
   end
 
+  def show_high_card
+    high_card.value
+  end
+
   def low_card
     @cards.min_by { |card| card.rank(Deck::VALUES) }
   end

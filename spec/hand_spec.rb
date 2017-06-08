@@ -24,6 +24,20 @@ RSpec.describe Hand, '#contains_card?' do
   end
 end
 
+RSpec.describe Hand, '#show_high_card' do
+  context 'When called' do
+    it 'displays the highest card in the hand' do
+      hand = Hand.new
+      card = Card.new('C', 3)
+      high_card = Card.new('C','K')
+      hand.add_card(card)
+      hand.add_card(high_card)
+      result = hand.show_high_card
+      expect(result).to eq "K"
+    end
+  end
+end
+
 RSpec.describe Hand, '#high_card' do
   context 'When called with cards with numerical values' do
     it 'returns the highest card in the hand' do
