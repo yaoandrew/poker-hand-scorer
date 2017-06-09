@@ -18,12 +18,8 @@ class Hand
     @cards.push(card)
   end
 
-  def length
-    @cards.length
-  end
-
   def contains_card?(card)
-    @cards.any? do |card_in_hand| 
+    @cards.any? do |card_in_hand|
       card_in_hand.value == card.value && card_in_hand.suit == card.suit
     end
   end
@@ -34,10 +30,6 @@ class Hand
 
   def low_card
     @cards.min_by { |card| card.rank(Deck::VALUES) }
-  end
-
-  def rank_difference
-    high_card.rank(Deck::VALUES) - low_card.rank(Deck::VALUES)
   end
 
   def consecutive_sum
