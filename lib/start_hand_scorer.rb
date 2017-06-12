@@ -13,13 +13,13 @@ ui = UserInterface.new
 deck = Deck.new
 hand = Hand.new
 
-while hand.length < 5
+while hand.cards.length < 5
   ui.prompt_user_for_card
   ui.get_input
   creator = CardCreator.new(ui.input)
   card = creator.create_card
 
-  if deck.valid_card?(card)
+  if card && deck.valid_card?(card)
     if !hand.contains_card?(card)
       hand.add_card(card)
     else

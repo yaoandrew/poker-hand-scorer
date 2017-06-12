@@ -9,7 +9,7 @@ class Hand
                  TP: 'Two Pair',
                  PR: 'Pair',
                  HC: 'High Card' }
-
+  attr_reader :cards
   def initialize
     @cards = []
   end

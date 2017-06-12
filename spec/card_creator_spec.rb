@@ -30,4 +30,20 @@ RSpec.describe CardCreator, '#new' do
       expect(value).to eq 10
     end
   end
+  context 'When the card creator has valid values for suit and value' do
+    it 'creates a card and sets the suit and value' do
+      card_creator = CardCreator.new('10H')
+      result = card_creator.create_card
+      card = Card.new('H', 10)
+      expect(result.value).to eql card.value
+    end
+  end
+  context 'When the card creator does not have valid values for suit or value' do
+    it 'does not create a card' do
+      card_creator = CardCreator.new('11M')
+      result = card_creator.create_card
+      card = nil
+      expect(result).to eql card
+    end
+  end
 end

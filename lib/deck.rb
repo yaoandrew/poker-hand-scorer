@@ -8,6 +8,14 @@ class Deck
     @cards = []
   end
 
+  def valid_suit?(suit)
+    SUITS.include?(suit)
+  end
+
+  def valid_value?(value)
+    VALUES.include?(value)
+  end
+
   def valid_card?(card)
     SUITS.include?(card.suit) && VALUES.include?(card.value)
   end

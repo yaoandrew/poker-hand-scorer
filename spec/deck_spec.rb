@@ -24,4 +24,20 @@ RSpec.describe Deck, '#valid_card?' do
       expect(result).to eq [0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
     end
   end
+  context "When the given card's suit is valid" do
+    it 'returns true' do
+      deck = Deck.new
+      card = Card.new('C', 2)
+      result = deck.valid_suit?(card.suit)
+      expect(result).to eq true
+    end
+  end
+  context "When the given card's value is valid" do
+    it 'returns true' do
+      deck = Deck.new
+      card = Card.new('C', 2)
+      result = deck.valid_value?(card.value)
+      expect(result).to eq true
+    end
+  end
 end

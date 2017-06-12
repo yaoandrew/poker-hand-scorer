@@ -1,5 +1,6 @@
 class CardCreator
   require_relative 'card'
+  require_relative 'deck'
   attr_accessor :suit, :value
 
   def initialize(input_string)
@@ -17,6 +18,9 @@ class CardCreator
   end
 
   def create_card
-    Card.new(@suit, @value)
+    deck = Deck.new
+    if deck.valid_suit?(@suit) && deck.valid_value?(@value)
+      Card.new(@suit, @value)
+    end
   end
 end
