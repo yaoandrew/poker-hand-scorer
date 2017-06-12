@@ -42,8 +42,7 @@ RSpec.describe CardCreator, '#new' do
     it 'does not create a card' do
       card_creator = CardCreator.new('11M')
       result = card_creator.create_card
-      card = nil
-      expect(result).to eql card
+      expect(result).to eql nil
     end
   end
 end
