@@ -3,7 +3,7 @@ require_relative '../lib/hand'
 require_relative '../lib/hand_evaluator'
 require_relative '../lib/hand_ranker'
 
-RSpec.describe HandEvaluator, '#best_hand' do
+RSpec.describe HandEvaluator, '#get_best_hand' do
   context 'When best hand is called with a high card hand' do
     it 'returns the string High Card' do
       hand = Hand.new
@@ -19,7 +19,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'High Card'
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Royal Flush'
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Straight Flush'
     end
   end
@@ -76,7 +76,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Four of a Kind'
     end
   end
@@ -95,7 +95,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Full House'
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Flush'
     end
   end
@@ -133,7 +133,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Straight'
     end
   end
@@ -152,7 +152,7 @@ RSpec.describe HandEvaluator, '#best_hand' do
       hand.add_card(card3)
       hand.add_card(card4)
       hand.add_card(card5)
-      result = hand_scorer.best_hand(hand)
+      result = hand_scorer.get_best_hand(hand)
       expect(result).to eq 'Three of a Kind'
     end
   end

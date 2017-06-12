@@ -24,6 +24,10 @@ class Hand
     end
   end
 
+  def is_complete_hand?
+    @cards.length == 5
+  end
+
   def high_card
     @cards.max_by { |card| card.rank(Deck::VALUES) }
   end

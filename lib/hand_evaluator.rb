@@ -3,7 +3,7 @@ class HandEvaluator
     @hand_ranker = ranker
   end
 
-  def best_hand(hand)
+  def get_best_hand(hand)
     case
     when @hand_ranker.contains_royal_flush?
       Hand::HAND_TYPES[:RF]

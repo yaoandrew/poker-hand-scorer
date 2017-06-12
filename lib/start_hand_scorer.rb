@@ -13,7 +13,7 @@ ui = UserInterface.new
 deck = Deck.new
 hand = Hand.new
 
-while hand.cards.length < 5
+until hand.is_complete_hand?
   ui.prompt_user_for_card
   ui.get_input
   creator = CardCreator.new(ui.input)
@@ -32,4 +32,4 @@ end
 
 hand_ranker = HandRanker.new (hand)
 hand_evaluator = HandEvaluator.new(hand_ranker)
-ui.hand_results(hand_evaluator.best_hand(hand))
+ui.show_hand_results(hand_evaluator.get_best_hand(hand))
