@@ -5,10 +5,10 @@ class CardCreator
   def initialize(input_string)
     if input_string.length > 2
       @value = input_string[0] + input_string[1]
-      @suit = input_string[2]
+      @suit = input_string[2].upcase
     else
       @value = input_string[0]
-      @suit = input_string[1]
+      @suit = input_string[1].upcase
     end
 
     if @value.to_i.between?(2, 10)
