@@ -7,28 +7,14 @@ require_relative 'hand'
 require_relative 'hand_evaluator'
 require_relative 'hand_ranker'
 require_relative 'card_creator'
-
+require_relative 'game_loop'
 
 ui = UserInterface.new
 deck = Deck.new
 hand = Hand.new
+game_loop = GameLoop.new(ui, deck, hand)
 
-until hand.is_complete_hand?
-  ui.prompt_user_for_card
-  ui.get_input
-  creator = CardCreator.new(ui.input)
-  card = creator.create_card
-
-  if card && deck.valid_card?(card)
-    if !hand.contains_card?(card)
-      hand.add_card(card)
-    else
-      ui.card_exists
-    end
-  else
-    ui.invalid_card
-  end
-end
+game_loop.start
 
 hand_ranker = HandRanker.new (hand)
 hand_evaluator = HandEvaluator.new(hand_ranker)
