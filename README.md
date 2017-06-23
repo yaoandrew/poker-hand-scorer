@@ -14,7 +14,10 @@ The source for the project can be found in the `lib/` folder. Tests can be found
 
 ## Running the test suite
 This project uses RSpec (3.5.4) for unit testing and was built with Ruby (2.4.0). You can run the
-tests by running `rspec` from the project root. RSpec is setup to run with `--color --format documentation` options set.
+tests by running `rspec` from the project root. RSpec is setup to run with `--color --format documentation` options set. 
+The project also uses SimpleCov for code coverage. You should install all the necessary dependencies by running 
+`bundle install` from the project root.
+
 
 ## Entering your hand
 You hand is represented in text and a card should be entered by the value and suit in that order. It helps to think of 
